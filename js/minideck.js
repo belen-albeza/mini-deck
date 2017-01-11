@@ -7,12 +7,25 @@ function MiniDeck(slides) {
         slide.innerHTML = `<div class="md-wrapper">${slide.innerHTML}</div>`;
     });
 
-    this.currentIndex = -1;
-    this.showSlide(this._getIndexFromHash() || this.currentIndex);
-
     // listen for DOM events
     document.addEventListener('keydown', this._onKeyDown.bind(this));
     window.addEventListener('hashchange', this._onHashChange.bind(this));
+
+    Object.defineProperties(this, {
+        currentSlide: {
+            get: function () { return this.slides[this.currentIndex]; }
+        },
+        currentStep: {
+            get: function () {
+                return this.slides[this.currentIndex]
+                    .steps[this.currentStepIndex];
+            }
+        }
+    });
+
+    this.currentStepIndex = -1;
+    this.currentIndex = -1;
+    this.showSlide(this._getIndexFromHash() || this.currentIndex);
 }
 
 MiniDeck.KEYCODES = {
@@ -31,32 +44,61 @@ MiniDeck.prototype.showSlide = function (index) {
     // exit if we are not really changing the slide
     // NOTE: this happens when we update the hash from this very function
     if (index === this.currentIndex) { return; }
+
     this.currentIndex = index;
+    this.currentStepIndex = -1;
     window.location.hash = `#${this.currentIndex + 1}`;
 
-    // make the current slide to have class .md-current
-    this.slides.forEach(function (slide, i) {
+    // remove the 'current' class marker from any other slide
+    this.slides.forEach(function (slide) {
         slide.classList.remove('md-current');
-        if (i === index) {
-            slide.classList.add('md-current');
-        }
+    });
+
+    // restore current slide
+    this.currentSlide.classList.add('md-current');
+    this.currentSlide.steps = this._getStepsForSlide(this.currentSlide);
+    this.currentSlide.steps.forEach(function (step) {
+        step.classList.remove('md-step-active');
     });
 };
 
 MiniDeck.prototype.showNextSlide = function () {
-    this.showSlide(this.currentIndex + 1);
+    if (this.currentIndex + 1 < this.slides.length) {
+        this.showSlide(this.currentIndex + 1);
+    }
 };
 
 MiniDeck.prototype.showPreviousSlide = function () {
-    this.showSlide(this.currentIndex - 1);
+    if (this.currentIndex > 0) {
+        this.showSlide(this.currentIndex - 1);
+    }
 };
 
-MiniDeck.prototype.showNextStep = function () {
-    this.showNextSlide();
+MiniDeck.prototype.advanceStep = function () {
+    if (this.currentStepIndex + 1 < this.currentSlide.steps.length) {
+        this.currentStepIndex += 1;
+        this.currentStep.classList.add('md-step-active');
+    }
+    else { // all steps are done, go to the next slide
+        this.showNextSlide();
+    }
 };
 
-MiniDeck.prototype.showPreviousStep = function () {
-    this.showPreviousSlide();
+MiniDeck.prototype.goBackStep = function () {
+    if (this.currentStepIndex >= 0) {
+        this.currentStep.classList.remove('md-step-active');
+        this.currentStepIndex -= 1;
+    }
+};
+
+MiniDeck.prototype._getIndexFromHash = function () {
+    let hash = parseInt(window.location.hash.substr(1), 10);
+    return hash ? hash - 1 : null;
+};
+
+// returns the steps within the current slide
+MiniDeck.prototype._getStepsForSlide = function (slide) {
+    return [].slice.call(slide.querySelectorAll('.md-step'));
 };
 
 MiniDeck.prototype._onHashChange = function (evt) {
@@ -77,15 +119,10 @@ MiniDeck.prototype._onKeyDown = function (evt) {
             break;
         case MiniDeck.KEYCODES.SPACE:
         case MiniDeck.KEYCODES.DOWN:
-            this.showNextStep();
+            this.advanceStep();
             break;
         case MiniDeck.KEYCODES.UP:
-            this.showPreviousStep();
+            this.goBackStep();
             break;
     }
-};
-
-MiniDeck.prototype._getIndexFromHash = function () {
-    let hash = parseInt(window.location.hash.substr(1), 10);
-    return hash ? hash - 1 : null;
 };
