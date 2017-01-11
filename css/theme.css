@@ -1,0 +1,21 @@
+body {
+    font-family: Courier, monospace;
+}
+
+.md-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.md-slide .md-wrapper {
+    max-width: 90vw;
+}
+
+.md-slide h1 {
+    font-size: 4vw;
+}
+
+.md-slide h2 {
+    font-size: 3vw;
+}

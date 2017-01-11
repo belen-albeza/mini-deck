@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <title>minideck example</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/minideck.css" type="text/css">
+    <link rel="stylesheet" href="css/theme.css" type="text/css">
+    <script src="js/minideck.js"></script>
+</head>
+<body>
+    <article class="deck">
+        <section>
+            <h1>A great presentation</h1>
+            <p>By someone</p>
+        </section>
+        <section>
+            <h1>El poder, la maldad, el heavy puede controlar</h1>
+            <p>armado con su robot: ¡Mazinger! Mazinger es: </p>
+            <ul>
+                <li>Heavy,</li>
+                <li>Es metálico</li>
+                <li>Es una fuuuuria</li>
+            </ul>
+        </section>
+        <section>
+            <h1>A title here</h1>
+            <h2>And a subtitle below it</h2>
+        </section>
+    </article>
+
+    <script>
+    window.onload = function () {
+        let deck = new MiniDeck(document.querySelectorAll('.deck section'));
+    };
+    </script>
+</body>
+</html>
