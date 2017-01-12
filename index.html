@@ -3,9 +3,13 @@
 <head>
     <title>minideck example</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/minideck.css" type="text/css">
-    <link rel="stylesheet" href="css/simple-theme.css" type="text/css">
-    <script src="js/minideck.js"></script>
+    <link rel="stylesheet" href="minideck/minideck.css" type="text/css">
+    <link rel="stylesheet" href="minideck/simple-theme.css" type="text/css">
+    <script src="minideck/minideck.js"></script>
+
+    <!-- remove these if you don't need syntax highlighting -->
+    <script src="minideck/vendor/prism.js"></script>
+    <link rel="stylesheet" href="minideck/vendor/prism.css" type="text/css">
 </head>
 <body>
     <article id="deck">
@@ -32,9 +36,11 @@
 
         <section>
             <h1>Some code here</h1>
-<pre><code class="lang-js">window.onload = function () {
-    console.log('hola mundo');
-}</code></pre>
+            <pre><code class="lang-js">
+            window.onload = function () {
+                console.log('hola mundo');
+            }
+            </code></pre>
         </section>
     </article>
 
