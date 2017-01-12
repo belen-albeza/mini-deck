@@ -10,6 +10,10 @@ Minimal HTML5 deck builder, mostly a fork of Sole's [MVSP](https://github.com/so
 
 You might also want to concatenate all the CSS files and JS into bundles.
 
+### Styling
+
+You should be editing `simple-theme.css`, or create your own CSS file. Avoid tweaking `minideck.css`, since it contains the (tiny) core base of styles for the slide deck to work.
+
 ### Syntax highlighting for source code
 
 [Prism](https://prismjs.com) has been included in `vendor/` for syntax highlighting.
