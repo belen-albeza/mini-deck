@@ -1,0 +1,67 @@
+/*
+general styles
+*/
+
+body {
+    font-family: Courier, monospace;
+}
+
+a, a:visited {
+    color: #00c;
+}
+
+h1, h2, h3, h4, h5, h6, p, li {
+    margin: 0.3em 0;
+}
+
+/*
+slides
+*/
+
+.md-slide.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.md-slide .md-wrapper {
+    max-width: 90vw;
+}
+
+.md-slide h1 {
+    font-size: 2em;
+}
+
+.md-slide h2 {
+    font-size: 1.5em;
+}
+
+/*
+steps
+*/
+
+.md-step:not(.md-step-active) {
+    opacity: 0.1;
+}
+
+/*
+progress bar
+*/
+
+.md-progress {
+    background: #ddd;
+    color: #000;
+}
+
+.md-progress::-webkit-progress-bar {
+    background: #ddd;
+}
+
+.md-progress::-moz-progress-bar {
+  background: #000;
+}
+
+.md-progress::-webkit-progress-value {
+  background: #000;
+}

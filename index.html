@@ -4,34 +4,46 @@
     <title>minideck example</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/minideck.css" type="text/css">
-    <link rel="stylesheet" href="css/theme.css" type="text/css">
+    <link rel="stylesheet" href="css/simple-theme.css" type="text/css">
     <script src="js/minideck.js"></script>
 </head>
 <body>
-    <article class="deck">
-        <section>
-            <h1>A great presentation</h1>
-            <p>By someone</p>
+    <article id="deck">
+        <header>
+            <progress></progress>
+        </header>
+        <section class="centered">
+            <h1>A great talk</h1>
+            <p>By <a href="http://twitter.com">@someone</a></p>
         </section>
         <section>
-            <h1>El poder, la maldad, el heavy puede controlar</h1>
-            <p>armado con su robot: ¡Mazinger! Mazinger es: </p>
+            <h1>This is a slide</h1>
+            <p>Use <code>SPACEBAR</code> or <code>RIGHT</code> to move forward.</p>
+        </section>
+        <section>
+            <h1>Another slide with bullet points</h1>
             <ul>
-                <li class="md-step">Heavy,</li>
-                <li class="md-step">Es metálico</li>
-                <li class="md-step">Es una fuuuuria</li>
+                <li>Use <code>SPACEBAR</code> or <code>DOWN</code> to show the next bullet.</li>
+                <li class="md-step">Use <code>UP</code> to go back to the previous bullet.</li>
+                <li class="md-step">Use <code>RIGHT</code> to skip bullets and go to the next slide</li>
+                <li class="md-step">Use <code>LEFT</code> to skip bullets and go straight to the previous slide.</li>
             </ul>
         </section>
+
         <section>
-            <h1>A title here</h1>
-            <h2>And a subtitle below it</h2>
+            <h1>Some code here</h1>
+<pre><code class="lang-js">window.onload = function () {
+    console.log('hola mundo');
+}</code></pre>
         </section>
     </article>
 
     <script>
-    window.onload = function () {
-        let deck = new MiniDeck(document.querySelectorAll('.deck section'));
-    };
+    document.addEventListener('DOMContentLoaded', function () {
+        let deck = new MiniDeck(
+            document.querySelectorAll('#deck > section'),
+            document.querySelector('#deck progress'));
+    });
     </script>
 </body>
 </html>

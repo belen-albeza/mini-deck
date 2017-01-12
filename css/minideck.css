@@ -1,23 +1,14 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
 *, *:before, *:after {
     box-sizing: border-box;
 }
 
-html {
-}
-
 body {
+    padding: 0;
+    margin: 0;
     height: 100vh;
     overflow: hidden;
     font-size: 2vw;
-}
-
-ul, ol {
-    margin-left: 1em;
+    line-height: 1.25;
 }
 
 .md-slide {
@@ -32,4 +23,15 @@ ul, ol {
 
 .md-slide:not(.md-current) {
     display: none;
+}
+
+.md-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 0.2em;
+    padding: 0;
+    border: 0;
 }
