@@ -127,7 +127,9 @@ MiniDeck.prototype.advanceStep = function () {
 MiniDeck.prototype.goBackStep = function () {
     if (this.currentStepIndex >= 0) {
         this.currentStep.classList.remove('md-step-active', 'md-step-current');
+        // update the (new) current step
         this.currentStepIndex -= 1;
+        this.currentStep.classList.add('md-step-current');
     }
 };
 
@@ -153,10 +155,12 @@ MiniDeck.prototype._disableIframes = function () {
             if (iframe.src) {
                 iframe.dataset.src = iframe.src;
                 iframe.removeAttribute('src');
+                iframe.contentWindow.location.reload();
             }
         }
     });
 };
+
 
 MiniDeck.prototype._enableIframesForSlide = function (index) {
     let iframes = this.slides[index].querySelectorAll('iframe');
