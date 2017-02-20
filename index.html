@@ -8,8 +8,8 @@
     <script src="minideck/minideck.js"></script>
 
     <!-- remove these if you don't need syntax highlighting -->
-    <script src="minideck/vendor/prism.js"></script>
-    <link rel="stylesheet" href="minideck/vendor/prism.css" type="text/css">
+    <script src="minideck/vendor/highlight.js"></script>
+    <link rel="stylesheet" href="minideck/vendor/highlight.css" type="text/css">
 </head>
 <body>
     <article id="deck">
@@ -36,7 +36,7 @@
 
         <section>
             <h1>Some code here</h1>
-            <pre><code class="lang-js">
+            <pre><code class="js">
             window.onload = function () {
                 console.log('hola mundo');
             }
@@ -50,6 +50,9 @@
             document.querySelectorAll('#deck > section'),
             document.querySelector('#deck progress'));
     });
+
+    // you can remove this line if you don't need syntax highlighting
+    if (hljs) { hljs.initHighlightingOnLoad();  }
     </script>
 </body>
 </html>

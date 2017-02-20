@@ -16,9 +16,9 @@ You should be editing `simple-theme.css`, or create your own CSS file. Avoid twe
 
 ### Syntax highlighting for source code
 
-[Prism](https://prismjs.com) has been included in `vendor/` for syntax highlighting.
+[Highlight.js](https://highlightjs.org/) has been included in `vendor/` for syntax highlighting.
 
-If you don't need this feature, feel free to remove both `prism.js` and `prism.css`, as well as their `<script>` and `<link>` tags in `index.html`.
+If you don't need this feature, feel free to remove both `highlight.js` and `highlight.css`, as well as their `<script>` and `<link>` tags in `index.html`.
 
 The built of this library included supports the following languages:
 
@@ -28,10 +28,10 @@ The built of this library included supports the following languages:
 - Javascript
 - Bash
 
-For it to work, you need to wrap your code in a `<code>` tag with the class set to the relevant language: `lang-css`, `lang-js`, etc. Example:
+For it to work, you need to wrap your code in a `<code>` tag with the class set to the relevant language: `js`, `css`, etc. Example:
 
 ```html
-<pre><code lang="lang-js">
+<pre><code lang="js">
 console.log('Hello, world!')
 </code></pre>
 ```
